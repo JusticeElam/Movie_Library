@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <title>Movie Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+  <body class="dark">
+    <header>
+      <nav class="top-nav">
+        <h1>Movie Hub</h1>
+
+        <div class="btns">
+          <button id="popular">Popular 🔥</button>
+          <button id="topRated">Top Rated 🏆</button>
+          <button id="upcoming">Upcoming 🤡</button>
+        </div>
+
+        <div class="toggle-container">
+          <label for="">Dark mode:</label>
+          <label class="switch">
+            <input type="checkbox" id="themeToggle" />
+            <span class="slider round"></span>
+          </label>
+          <label for="">Light Mode:</label>
+        </div>
+
+        <i class="fas fa-bars"></i>
+      </nav>
+
+    <nav class="side-nav">
+      <span class="nav-close">&times;</span>
+      <h1>Movie Hub</h1>
+      <div class="side-btns">
+        <button id="ham-popular">Popular 🔥</button>
+        <button id="ham-topRated">Top Rated 🏆</button>
+        <button id="ham-upcoming">Upcoming 🤡</button>
+      </div>
+      <div class="ham-toggle-container">
+        <!-- <label for="" class="side-nav-text">Dark mode:</label> -->
+        <label class="ham-switch">
+          <input type="checkbox" id="ham-themeToggle" />
+          <span class="ham-slider round"></span>
+        </label>
+        <!-- <label for="" class="side-nav-text">Light Mode:</label> -->
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="filter-bar">
+      <label for="ratingFilter">Filter by Rating:</label>
+      <select id="ratingFilter">
+        <option value="0">All Ratings</option>
+        <option value="8">8+ Star</option>
+        <option value="7">7+ Star</option>
+        <option value="6">6+ Star</option>
+      </select>
+    </div>
+    <div id="movieGrid"></div>
+  </main>
+
+  <footer>
+    <p>
+      <span>&copy;</span> 2026 MovieHub. All rights Reserved. <br>
+      Developed by <a href="https://github.com/JusticeElam" target="_blank"><strong>JusticeElam</strong></a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
