@@ -7,7 +7,7 @@
   <title>Movie Hub</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-  <body class="dark">
+  <body class="light">
     <header>
       <nav class="top-nav">
         <h1>Movie Hub</h1>
@@ -59,7 +59,24 @@
         <option value="6">6+ Star</option>
       </select>
     </div>
+
     <div id="movieGrid"></div>
+
+    <!-- Movie Modal -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="closeBtn">&times;</span>
+
+            <h2 id="modalTitle"></h2>
+            <p><strong>Release Date:</strong> <span id="modalDate"></span></p>
+            <p><strong>Runtime:</strong> <span id="modalRuntime"></span> mins</p>
+            <p><strong>Rating:</strong> ⭐ <span id="modalRating"></span></p>
+            <p><strong>Language:</strong> <span id="modalLang"></span></p>
+
+            <p id="modalOverview"></p>
+            <button id="trailerBtn">Watch Trailer</button>
+        </div>
+    </div>
   </main>
 
   <footer>

@@ -3,9 +3,12 @@
   padding: 0;
   box-sizing: border-box;
   font-family: cursive;
+  transition: .8s ease-in-out;
 }
 
-/* Base styles */
+/* ====================
+    BODY
+   ==================== */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -16,6 +19,9 @@ body {
   transition: all 0.3s ease;
 }
 
+/* ====================
+    HEADER
+   ==================== */
 header{
   background-color: var(--header-bg);
   color: var(--text);
@@ -30,10 +36,9 @@ header{
   color: var(--text-color);
 }
 
-header h1{
-  font-family: cursive;
-}
-
+/* ====================
+    BUTTONS
+   ==================== */
 .btns button {
   margin: 0 5px;
   padding: 10px;
@@ -41,8 +46,6 @@ header h1{
   cursor: pointer;
   border-radius: 5px;
   font-size: 16px;
-
-
   background-color: var(--button-bg);
   color: var(--text);
 }
@@ -52,7 +55,10 @@ header h1{
   color: var(--btns-hover-text);
   box-shadow: 0 0 10px var(--btns-bs);
 }
-
+    
+/* ====================
+    TOGGLE CONTAINER
+   ==================== */
 .toggle-container {
   display: flex;
   align-items: center;
@@ -60,7 +66,6 @@ header h1{
   gap: 10px;
 }
 
-/* Toggle Switch */
 .switch {
   position: relative;
   display: inline-block;
@@ -106,7 +111,9 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Filter bar */
+/* ====================
+    FILTER BAR
+   ==================== */
 .filter-bar {
   padding: 15px 20px;
   background-color: var(--header-bg);
@@ -124,6 +131,10 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 
+
+/* ====================
+    HAMBURGER MENU
+   ==================== */
 .fa-bars{
   font-size: 30px;
   display: none;
@@ -134,7 +145,9 @@ input:checked + .slider:before {
 }
 
 
-/* Movie grid */
+/* ====================
+    MOVIE GRID
+   ==================== */
 #movieGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -142,6 +155,10 @@ input:checked + .slider:before {
   padding: 20px;
 }
 
+
+/* ====================
+    MOVIE CARD
+   ==================== */
 .movie-card {
   border-radius: 8px;
   overflow: hidden;
@@ -171,16 +188,116 @@ input:checked + .slider:before {
   font-size: 16px;
 }
 
+/* ====================
+    MODAL
+   ==================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000cc;
+}
+
+/* ====================
+    MODAL CONTENT
+   ==================== */
+.modal-content {
+  background: var(--card-bg);
+  color: var(--text);
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  position: relative;
+  animation: pop 0.3s ease;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.modal-content p {
+    margin: 10px;
+}
+
+.modal-content p strong{
+    font-size: 18px;
+}
+
+#modalOverview{
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+/* ====================
+    CLOSE BUTTON
+   ==================== */
+.closeBtn {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.closeBtn:hover {
+  background-color: var(--close-hover-bg);
+  color: var(--close-hover-color);
+}
+
+/* ====================
+    TRAILER BUTTON
+   ==================== */
+#trailerBtn{
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    background-color: var(--button-bg);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+}
+
+/* ====================
+    ANIMATION
+   ==================== */
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+/* ====================
+    FOOTER
+   ==================== */
 footer{
   text-align: center;
   padding: 50px;
   line-height: 30px;
-
-
   background-color: var(--footer-bg);
   color: var(--text);
 }
 
+
+/* ====================
+    MEDIA QUERIES
+   ==================== */
 @media(max-width: 800px){
   .btns{
     display: none;
@@ -196,9 +313,7 @@ footer{
   }
 
   .side-nav{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: block;
     text-align: center;
     padding: 20px;
     position: relative;
@@ -323,7 +438,9 @@ footer{
   }
 }
 
-/* 🌑 DARK MODE (default) */
+/* ====================
+    🌑 DARK MODE (default)
+    ==================== */
 body.dark {
   --bg: #111;
   --text: #ffffff;
@@ -336,6 +453,9 @@ body.dark {
   --hover-bg: linear-gradient(to top, white, transparent);
   --hover-text: #000;
 
+  --close-hover-bg: white;
+  --close-hover-color: black;
+
   --side-btns-bg: #1b1a1a;
   --side-header-bg: #444141;
   --side-text:#ffffff;
@@ -343,18 +463,23 @@ body.dark {
   --side-hover-bg: #444;
 }
 
-/* 🌕 LIGHT MODE */
+/* ====================
+    🌕 LIGHT MODE
+   ==================== */
 body.light {
   --bg: #ffffff;
   --text: #000000;
 
   --header-bg: #a5a5a5;
   --card-bg: #f2f2f2;
-  --button-bg: #dddddd;
+  --button-bg: #8b8989;
   --footer-bg: #d9d9d9;
 
   --hover-bg: linear-gradient(to top, black, transparent);
   --hover-text: #fff;
+
+  --close-hover-bg: black;
+  --close-hover-color: white;
 
   --side-btns-bg: #444;
   --side-header-bg: #a1a1a1;
