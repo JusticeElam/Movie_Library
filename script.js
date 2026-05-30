@@ -1,6 +1,8 @@
 const API_KEY = '6100287fcb0455df27e5c2baf78191f9';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
+let favorites =
+JSON.parse(localStorage.getItem('favorites')) || [];
 
 /* =========================
    ELEMENTS
@@ -8,12 +10,16 @@ const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
 const movieGrid = document.getElementById('movieGrid');
 const ratingFilter = document.getElementById('ratingFilter');
 
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+
 const themeToggle = document.getElementById('themeToggle');
 const hamThemeToggle = document.getElementById('ham-themeToggle');
 
 const hamMenu = document.querySelector('.fa-bars');
 const sideNav = document.querySelector('.side-nav');
 const sideNavClose = document.querySelector('.nav-close');
+
 
 /* =========================
    SIDE NAV
@@ -68,6 +74,10 @@ function displayMovies(movies) {
   movieGrid.innerHTML = '';
 
   movies.forEach(movie => {
+
+    const isFavorite =
+    favorites.some(item => item.id === movie.id);
+
     const card = document.createElement('div');
     card.className = 'movie-card';
 
@@ -77,15 +87,116 @@ function displayMovies(movies) {
       <p>⭐ ${movie.vote_average}</p>
       <p>Release: ${movie.release_date}</p>
       <p>${movie.overview.slice(0, 100)}...</p>
+
+      <button class="favorite-btn">
+        ${isFavorite ? '❌ Remove Favorite' : '❤️ Add Favorite'}
+      </button>
     `;
+
+    const favoriteBtn =
+    card.querySelector('.favorite-btn');
+
+    favoriteBtn.addEventListener('click', (e) => {
+
+      e.stopPropagation();
+
+      const exists =
+      favorites.some(item => item.id === movie.id);
+
+      if(exists){
+
+        favorites =
+        favorites.filter(item => item.id !== movie.id);
+
+        localStorage.setItem(
+          'favorites',
+          JSON.stringify(favorites)
+        );
+
+        favoriteBtn.textContent =
+        '❤️ Add Favorite';
+
+      }else{
+
+        favorites.push(movie);
+
+        localStorage.setItem(
+          'favorites',
+          JSON.stringify(favorites)
+        );
+
+        favoriteBtn.textContent =
+        '❌ Remove Favorite';
+
+      }
+
+    });
 
     card.addEventListener('click', () => {
       fetchMovieDetails(movie.id);
     });
 
     movieGrid.appendChild(card);
+
   });
 }
+
+const favoritesBtn =
+document.getElementById('favoritesBtn');
+
+favoritesBtn.addEventListener('click', () => {
+
+  currentCategory = 'favorites';
+
+  displayMovies(favorites);
+
+});
+
+// ===========================
+// SEARCH FUNCTIONALITY
+// ===========================
+searchBtn.addEventListener('click', () => {
+
+  const query = searchInput.value.trim();
+
+  if(query === ''){
+    return;
+  }
+
+  searchMovies(query);
+
+});
+
+function searchMovies(query){
+
+  const url =
+  `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+
+      displayMovies(data.results);
+
+    })
+    .catch(error => {
+
+      console.log(error);
+
+    });
+
+}
+
+searchInput.addEventListener('keydown', (e) => {
+
+  if(e.key === 'Enter'){
+
+    searchBtn.click();
+
+  }
+
+});
+
 
 /* =========================
    MOVIE DETAILS + MODAL
